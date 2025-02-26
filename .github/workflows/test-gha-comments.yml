@@ -13,8 +13,14 @@ permissions:
   id-token: write
 
 jobs:
-  a_sample_job:
-    if: ${{ contains(github.event.comment.body, '.deploy') }}
+  job_1:
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Apparently the comment contains the word '.deploy'"
+      - run: echo "Running job_1"
+  job_2:
+    if: ${{ contains(github.event.comment.body, '.deploy') }}
+    needs: job_1
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running job_2"
