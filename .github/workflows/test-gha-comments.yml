@@ -1,0 +1,12 @@
+name: "test GHA comments"
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  a_sample_job:
+    if: ${{ contains(github.event.comment.body, '.deploy') }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Apparently the comment contains the word '.deploy'"
