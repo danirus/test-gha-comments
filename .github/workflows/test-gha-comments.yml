@@ -4,6 +4,14 @@ on:
   issue_comment:
     types: [created]
 
+permissions:
+  pull-requests: write
+  deployments: write
+  contents: write
+  checks: read
+  statuses: read
+  id-token: write
+
 jobs:
   a_sample_job:
     if: ${{ contains(github.event.comment.body, '.deploy') }}
